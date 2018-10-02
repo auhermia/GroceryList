@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GroceryList.Context;
+using GroceryList.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,18 +15,27 @@ namespace GroceryList.Controllers
             return View();
         }
 
-        public ActionResult About()
+        
+        public ActionResult SaveRecord(Grocery model)
         {
-            ViewBag.Message = "Your application description page.";
+            if (ModelState.IsValid)
+            {
+                GroceryContext db = new GroceryContext();
 
-            return View();
+                Grocery grocery = new Grocery();
+                grocery.Store = model.Store;
+                grocery.Item = model.Item;
+
+                db.Groceries.Add(grocery);
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

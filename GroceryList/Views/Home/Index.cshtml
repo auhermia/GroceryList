@@ -1,31 +1,57 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model GroceryList.Models.Grocery
+
+@{ 
+    Layout = null;
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<html>
+<head>
+    <link href="~/Content/Site.css?version=1" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Grocery List</title>
+</head>
+<body>
+    <div class="container">
+        <div class="addItem">
+            @using (Html.BeginForm("SaveRecord", "Home", FormMethod.Post))
+            {
+                <div>@Html.ValidationSummary()</div>
+                <div>
+                    @Html.DropDownListFor(x => x.Store, new[]
+               {
+                   new SelectListItem() { Text = "99 Ranch"},
+                   new SelectListItem() { Text = "Costco"},
+                   new SelectListItem() { Text = "H Mart"},
+                   new SelectListItem() { Text = "Mitsuwa"},
+                   new SelectListItem() { Text = "Ralphs"},
+                   new SelectListItem() { Text = "Trader Joe's"}
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+               }, "Select Store", new { @class = "form-control"})
+                </div>
+                <div>
+                    @Html.TextBoxFor(x => x.Item, new { @class = "form-control", @placeholder = "Item" })
+                </div>
+                <input type="submit" value="Add" class="btn btn-block" />
+            }
+        </div>
+        <div class="listItems">
+
+        </div>
+            
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+    
+</body>
+</html>
+
+
+@* TO DO
+    1.  set up db
+    2.  save to db
+    3.  css
+    4.  delete
+    5.  render list in view
+    6.  validation summary
+    7.  ajax forms?
+    
+    
+    *@
