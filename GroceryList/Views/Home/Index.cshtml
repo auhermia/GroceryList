@@ -1,5 +1,6 @@
 ﻿@model GroceryList.Models.Grocery
 
+
 @{ 
     Layout = null;
 }
@@ -24,7 +25,8 @@
                    new SelectListItem() { Text = "H Mart"},
                    new SelectListItem() { Text = "Mitsuwa"},
                    new SelectListItem() { Text = "Ralphs"},
-                   new SelectListItem() { Text = "Trader Joe's"}
+                   new SelectListItem() { Text = "Trader Joe's"},
+                   new SelectListItem() { Text = "Other"}
 
                }, "Select Store", new { @class = "form-control"})
                 </div>
@@ -34,10 +36,7 @@
                 <input type="submit" value="Add" class="btn btn-block" />
             }
         </div>
-        <div class="listItems">
-
-        </div>
-            
+        @Html.Action("LoadGroceriesList")            
     </div>
     
 </body>

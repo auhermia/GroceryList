@@ -10,6 +10,8 @@ namespace GroceryList.Controllers
 {
     public class HomeController : Controller
     {
+        GroceryContext db = new GroceryContext();
+
         public ActionResult Index()
         {
             return View();
@@ -20,8 +22,6 @@ namespace GroceryList.Controllers
         {
             if (ModelState.IsValid)
             {
-                GroceryContext db = new GroceryContext();
-
                 Grocery grocery = new Grocery();
                 grocery.Store = model.Store;
                 grocery.Item = model.Item;
@@ -35,6 +35,11 @@ namespace GroceryList.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
+
+        public PartialViewResult LoadGroceriesList()
+        {
+            return PartialView("_Groceries", db.Groceries.ToList());
         }
 
     }

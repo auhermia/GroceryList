@@ -163,6 +163,10 @@
     <Compile Include="Migrations\201810020653299_Init.Designer.cs">
       <DependentUpon>201810020653299_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810020941140_update1.cs" />
+    <Compile Include="Migrations\201810020941140_update1.Designer.cs">
+      <DependentUpon>201810020941140_update1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Grocery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,6 +208,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_Groceries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -224,6 +229,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810020653299_Init.resx">
       <DependentUpon>201810020653299_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810020941140_update1.resx">
+      <DependentUpon>201810020941140_update1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

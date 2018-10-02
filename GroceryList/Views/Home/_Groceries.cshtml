@@ -1,0 +1,17 @@
+﻿@model IEnumerable<GroceryList.Models.Grocery>
+
+<div class="list">
+    <table>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(x => item.Store)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.Item)
+            </td>
+        </tr>
+        }
+    </table>
+</div>
