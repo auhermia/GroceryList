@@ -38,9 +38,20 @@ namespace GroceryList.Controllers
             }
         }
 
+
         public PartialViewResult LoadGroceryList()
         {
             return PartialView("_Groceries", db.Groceries.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int Id)
+        {
+            var removeItem = db.Groceries.Find(Id);
+            db.Groceries.Remove(removeItem);
+            db.SaveChanges();
+            //return RedirectToAction("LoadGroceryList");
+            return RedirectToAction("Index");
         }
 
     }
