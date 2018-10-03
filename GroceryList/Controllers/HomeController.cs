@@ -33,11 +33,12 @@ namespace GroceryList.Controllers
             }
             else
             {
+                // TODO - WHAT DO
                 return RedirectToAction("Index");
             }
         }
 
-        public PartialViewResult LoadGroceriesList()
+        public PartialViewResult LoadGroceryList()
         {
             return PartialView("_Groceries", db.Groceries.ToList());
         }

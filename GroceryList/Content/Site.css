@@ -1,7 +1,29 @@
-﻿.container {
+﻿
+
+.container {
     width: 50%;
+    background-color: #efefef;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 .addItem {
-    width: 30%;
+    margin: auto;
+    width: 50%;
+}
+
+.list{
+    margin: auto;
+    width: 50%;
+}
+
+td {
+    width: 10em;
+}
+
+.field-validation-error{
+    color: #cc0000;
+}
+.input-validation-error {
+    border: .5em solid #cc0000;
 }

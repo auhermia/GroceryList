@@ -1,14 +1,16 @@
 ﻿@model GroceryList.Models.Grocery
 
-
 @{ 
     Layout = null;
 }
 
 <html>
 <head>
-    <link href="~/Content/Site.css?version=1" rel="stylesheet" />
+    <link href="~/Content/Site.css?version=2" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <title>Grocery List</title>
 </head>
 <body>
@@ -28,15 +30,15 @@
                    new SelectListItem() { Text = "Trader Joe's"},
                    new SelectListItem() { Text = "Other"}
 
-               }, "Select Store", new { @class = "form-control"})
+               }, "-- Select Store --", new { @class = "form-control"})
                 </div>
                 <div>
                     @Html.TextBoxFor(x => x.Item, new { @class = "form-control", @placeholder = "Item" })
                 </div>
-                <input type="submit" value="Add" class="btn btn-block" />
+                <input type="submit" value="ADD" class="btn btn-block" />
             }
         </div>
-        @Html.Action("LoadGroceriesList")            
+        @Html.Action("LoadGroceryList")            
     </div>
     
 </body>
@@ -44,13 +46,14 @@
 
 
 @* TO DO
-    1.  set up db
-    2.  save to db
+    1.  set up db - x
+    2.  save to db - x
     3.  css
     4.  delete
-    5.  render list in view
+    5.  render list in view - x
     6.  validation summary
     7.  ajax forms?
+    8.  no duplicate item
     
     
     *@
