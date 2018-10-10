@@ -159,33 +159,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810020653299_Init.cs" />
-    <Compile Include="Migrations\201810020653299_Init.Designer.cs">
-      <DependentUpon>201810020653299_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810020941140_update1.cs" />
-    <Compile Include="Migrations\201810020941140_update1.Designer.cs">
-      <DependentUpon>201810020941140_update1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810050833561_viewmodelTst.cs" />
-    <Compile Include="Migrations\201810050833561_viewmodelTst.Designer.cs">
-      <DependentUpon>201810050833561_viewmodelTst.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810050917019_viemodeltest2.cs" />
-    <Compile Include="Migrations\201810050917019_viemodeltest2.Designer.cs">
-      <DependentUpon>201810050917019_viemodeltest2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810051800247_und.cs" />
-    <Compile Include="Migrations\201810051800247_und.Designer.cs">
-      <DependentUpon>201810051800247_und.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810051820005_edit.cs" />
-    <Compile Include="Migrations\201810051820005_edit.Designer.cs">
-      <DependentUpon>201810051820005_edit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810100352337_vmtest2.cs" />
-    <Compile Include="Migrations\201810100352337_vmtest2.Designer.cs">
-      <DependentUpon>201810100352337_vmtest2.cs</DependentUpon>
+    <Compile Include="Migrations\201810100822480_init.cs" />
+    <Compile Include="Migrations\201810100822480_init.Designer.cs">
+      <DependentUpon>201810100822480_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Grocery.cs" />
@@ -250,26 +226,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810020653299_Init.resx">
-      <DependentUpon>201810020653299_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810020941140_update1.resx">
-      <DependentUpon>201810020941140_update1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810050833561_viewmodelTst.resx">
-      <DependentUpon>201810050833561_viewmodelTst.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810050917019_viemodeltest2.resx">
-      <DependentUpon>201810050917019_viemodeltest2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810051800247_und.resx">
-      <DependentUpon>201810051800247_und.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810051820005_edit.resx">
-      <DependentUpon>201810051820005_edit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810100352337_vmtest2.resx">
-      <DependentUpon>201810100352337_vmtest2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810100822480_init.resx">
+      <DependentUpon>201810100822480_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

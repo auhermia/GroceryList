@@ -16,17 +16,17 @@ namespace GroceryList.Controllers
 
         public ActionResult Index()
         {
-            //var viewmodel = new GroceryViewModel();
-            //viewmodel.Markets = db.Markets.ToList()
-            //    .Select(x => new SelectListItem
-            //    {
-            //        Value = x.MarketId,
-            //        Text = x.Market
-            //    });
-            //return View(viewmodel);
-            //var markets = db.Markets.ToList();
+            var viewmodel = new GroceryViewModel();
+            viewmodel.Markets = db.Markets.ToList()
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.MarketName
+                });
+            return View(viewmodel);
+            
 
-            return View();
+            //return View();
         }
 
         public ActionResult SaveRecord(GroceryViewModel viewModel)
@@ -35,7 +35,7 @@ namespace GroceryList.Controllers
             {
                 Grocery grocery = new Grocery
                 {
-                    Store = viewModel.Grocery.Store,
+                    Market = viewModel.Grocery.Market,
                     Item = viewModel.Grocery.Item
                 };
 

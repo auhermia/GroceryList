@@ -24,7 +24,7 @@
             {
                 <div>@Html.ValidationSummary()</div>
                 <div>
-                    @Html.DropDownListFor(x => x.Grocery.Store, new[]
+                    @*@Html.DropDownListFor(x => x.Grocery.Market, new[]
                {
                    new SelectListItem() { Text = "99 Ranch"},
                    new SelectListItem() { Text = "Costco"},
@@ -34,7 +34,8 @@
                    new SelectListItem() { Text = "Trader Joe's"},
                    new SelectListItem() { Text = "Other"}
 
-               }, "-- Select Store --", new { @class = "form-control"})
+               }, "-- Select Store --", new { @class = "form-control"})*@
+                    @Html.DropDownListFor(x => x.Markets, new SelectList(Model.Markets, "ID", "Name"), "-- Select Store --", new { @class = "form-control" })
                 </div>
                 <div>
                     @Html.TextBoxFor(x => x.Grocery.Item, new { @class = "form-control", @placeholder = "Item" })

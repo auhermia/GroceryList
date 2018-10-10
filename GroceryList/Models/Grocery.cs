@@ -12,7 +12,7 @@ namespace GroceryList.Models
         [Key]
         public int Id { get; set; }
         [Required(ErrorMessage ="Please select a store")]
-        public string Store { get; set; }
+        public string Market { get; set; }
         [Required(ErrorMessage ="Please enter an item")]
         public string Item { get; set; }
 
