@@ -1,29 +1,42 @@
-﻿
+﻿button {
+    background: transparent;
+    border: 0;
+    outline: none;
+    width: 80%;
+}
+
+td, th{
+    width: 10em;
+    text-align: center;
+    padding-top: 2em;
+    padding-bottom: 1em;
+}
 
 .container {
     width: 50%;
     background-color: #efefef;
     padding-top: 2em;
     padding-bottom: 2em;
+    height: 100%;
 }
 
 .addItem {
     margin: auto;
-    width: 50%;
+    width: 75%;
 }
 
 .list{
     margin: auto;
-    width: 50%;
+    width: 75%;
 }
 
-td {
-    width: 10em;
+.input-validation-error {
+    border: .1em solid #cc0000;
 }
 
-.field-validation-error{
+.validation-summary-errors{
     color: #cc0000;
 }
-.input-validation-error {
-    border: .5em solid #cc0000;
+.fixed-table-container{
+    border: 0;
 }
