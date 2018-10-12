@@ -16,8 +16,9 @@ namespace GroceryList.Controllers
 
         public ActionResult Index()
         {
+            // load list of markets
             var viewmodel = new GroceryViewModel();
-            viewmodel.Markets = db.Markets.ToList()
+            viewmodel.MarketList = db.Markets.ToList()
                 .Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
@@ -25,8 +26,6 @@ namespace GroceryList.Controllers
                 });
             return View(viewmodel);
             
-
-            //return View();
         }
 
         public ActionResult SaveRecord(GroceryViewModel viewModel)
@@ -35,7 +34,8 @@ namespace GroceryList.Controllers
             {
                 Grocery grocery = new Grocery
                 {
-                    Market = viewModel.Grocery.Market,
+                    MarketId = viewModel.Grocery.MarketId,
+                    Quantity = viewModel.Grocery.Quantity,
                     Item = viewModel.Grocery.Item
                 };
 
@@ -52,7 +52,35 @@ namespace GroceryList.Controllers
 
         public PartialViewResult LoadGroceryList()
         {
-            return PartialView("_Groceries", db.Groceries.ToList());
+            // populating list of items
+            List<GroceryViewModel> groceryList = new List<GroceryViewModel>();
+
+            var query = (from g in db.Groceries
+                         join m in db.Markets
+                         on g.MarketId equals m.Id
+                         select new
+                         {
+                             g.Id,
+                             g.Item,
+                             g.Quantity,
+                             m.MarketName
+                         }).ToList();
+
+            foreach (var item in query)
+            {
+                GroceryViewModel gvm = new GroceryViewModel();
+                gvm.MarketName = item.MarketName;
+                gvm.Id = item.Id;
+                gvm.Item = item.Item;
+                gvm.Quantity = item.Quantity;
+                
+                groceryList.Add(gvm);
+            }
+
+            // calculating quantity
+
+
+            return PartialView("_Groceries", groceryList);
         }
 
         [HttpPost]

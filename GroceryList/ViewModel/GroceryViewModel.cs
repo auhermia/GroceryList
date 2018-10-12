@@ -10,9 +10,14 @@ namespace GroceryList.ViewModel
 {
     public class GroceryViewModel
     {
-        public IEnumerable<SelectListItem> Markets { get; set; }
+        public IEnumerable<SelectListItem> MarketList { get; set; }
 
+        public int Id { get; set; }
+        public string Item { get; set; }
+        public string MarketName { get; set; }
+        public int Quantity { get; set; }
 
         public Grocery Grocery { get; set; }
+        public Market Market { get; set; }
     }
 }

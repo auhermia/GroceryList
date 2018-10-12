@@ -1,4 +1,5 @@
-﻿@model IEnumerable<GroceryList.Models.Grocery>
+﻿@*@model IEnumerable<GroceryList.Models.Grocery>*@
+@model IEnumerable<GroceryList.ViewModel.GroceryViewModel>
 
 <div class="list">
     <table id="myTable" class="table" data-toggle="table" data-sort-order="desc">
@@ -6,6 +7,7 @@
             <tr>
                 <th data-field="market" data-sortable="true">Market</th>
                 <th data-field="item" data-sortable="true">Item</th>
+                <th>Quantity</th>
                 <th></th>
             </tr>
         </thead>
@@ -16,10 +18,13 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(x => item.Market)
+                            @Html.DisplayFor(x => item.MarketName)
                         </td>
                         <td>
                             @Html.DisplayFor(x => item.Item)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Quantity)
                         </td>
                         <td>
                             <button type="submit">

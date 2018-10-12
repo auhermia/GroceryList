@@ -1,5 +1,4 @@
-﻿@*@model GroceryList.Models.Grocery*@
-    @model GroceryList.ViewModel.GroceryViewModel
+﻿@model GroceryList.ViewModel.GroceryViewModel
 
 @{ 
     Layout = null;
@@ -19,26 +18,17 @@
 </head>
 <body>
     <div class="container">
+        <h1>I'M ALL OUT OF</h1>
         <div class="addItem">
             @using (Html.BeginForm("SaveRecord", "Home", FormMethod.Post, new { style = "margin-top: 1em;"}))
             {
                 <div>@Html.ValidationSummary()</div>
                 <div>
-                    @*@Html.DropDownListFor(x => x.Grocery.Market, new[]
-               {
-                   new SelectListItem() { Text = "99 Ranch"},
-                   new SelectListItem() { Text = "Costco"},
-                   new SelectListItem() { Text = "H Mart"},
-                   new SelectListItem() { Text = "Mitsuwa"},
-                   new SelectListItem() { Text = "Ralphs"},
-                   new SelectListItem() { Text = "Trader Joe's"},
-                   new SelectListItem() { Text = "Other"}
-
-               }, "-- Select Store --", new { @class = "form-control"})*@
-                    @Html.DropDownListFor(x => x.Markets, new SelectList(Model.Markets, "ID", "Name"), "-- Select Store --", new { @class = "form-control" })
+                    @Html.DropDownListFor(x => x.Grocery.MarketId, Model.MarketList, "-- Select Store --", new { @class = "form-control" })
                 </div>
                 <div>
                     @Html.TextBoxFor(x => x.Grocery.Item, new { @class = "form-control", @placeholder = "Item" })
+                    @Html.TextBoxFor(x => x.Grocery.Quantity, new { @class= "form-control", @placeholder = "Quantity"})
                 </div>
                 <input type="submit" value="ADD" class="btn btn-block" />
             }
@@ -48,17 +38,3 @@
     
 </body>
 </html>
-
-
-@* TO DO
-    1.  set up db - x
-    2.  save to db - x
-    3.  css
-    4.  delete - x
-    5.  render list in view - x
-    6.  validation summary - x
-    7.  ajax forms?
-    8.  no duplicate item
-    9.  ddl db   
-    10. fix table
-    *@
