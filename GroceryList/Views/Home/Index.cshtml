@@ -10,10 +10,11 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-   @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+    @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
     @*<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
     <link href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet" />*@
-    <link href="~/Content/Site.css?version=6" rel="stylesheet" />
+    <script src="~/Scripts/Site.js"></script>
+    <link href="~/Content/Site.css?version=7" rel="stylesheet" />
     <title>Grocery List</title>
 </head>
 <body>
@@ -25,15 +26,17 @@
                 <div>@Html.ValidationSummary()</div>
                 <div>
                     @Html.DropDownListFor(x => x.Grocery.MarketId, Model.MarketList, "-- Select Store --", new { @class = "form-control" })
-                </div>
-                <div>
+                    @Html.DropDownListFor(x => x.Grocery.CategoryId, Model.CategoryList, "-- Select Category --", new { @class = "form-control" })
                     @Html.TextBoxFor(x => x.Grocery.Item, new { @class = "form-control", @placeholder = "Item" })
                     @Html.TextBoxFor(x => x.Grocery.Quantity, new { @class= "form-control", @placeholder = "Quantity"})
                 </div>
                 <input type="submit" value="ADD" class="btn btn-block" />
             }
         </div>
-        @Html.Action("LoadGroceryList")            
+        @Html.Action("LoadGroceryList")
+        <h3>I need enough money for <span id="totalCount"></span> things</h3>
+
+        
     </div>
     
 </body>

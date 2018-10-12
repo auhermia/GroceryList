@@ -14,19 +14,31 @@ namespace GroceryList.Controllers
     {
         GroceryContext db = new GroceryContext();
 
+        /* -------------------- Main -------------------- */
+
         public ActionResult Index()
         {
-            // load list of markets
-            var viewmodel = new GroceryViewModel();
-            viewmodel.MarketList = db.Markets.ToList()
+            // load list of markets and grocery categories to dropdowns
+            GroceryViewModel gvm = new GroceryViewModel();
+
+            gvm.MarketList = db.Markets.ToList()
                 .Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
                     Text = x.MarketName
                 });
-            return View(viewmodel);
+
+            gvm.CategoryList = db.GroceryCategories.ToList()
+                .Select(x => new SelectListItem
+                {
+                    Value = x.Id.ToString(),
+                    Text = x.Category
+                });
+            return View(gvm);
             
         }
+
+        /* -------------------- Save -------------------- */
 
         public ActionResult SaveRecord(GroceryViewModel viewModel)
         {
@@ -35,8 +47,9 @@ namespace GroceryList.Controllers
                 Grocery grocery = new Grocery
                 {
                     MarketId = viewModel.Grocery.MarketId,
+                    CategoryId = viewModel.Grocery.CategoryId,
+                    Item = viewModel.Grocery.Item,
                     Quantity = viewModel.Grocery.Quantity,
-                    Item = viewModel.Grocery.Item
                 };
 
                 db.Groceries.Add(grocery);
@@ -50,38 +63,59 @@ namespace GroceryList.Controllers
             }
         }
 
+        /* -------------------- Populate list of items -------------------- */
+
         public PartialViewResult LoadGroceryList()
         {
-            // populating list of items
             List<GroceryViewModel> groceryList = new List<GroceryViewModel>();
 
+            // get data from db
             var query = (from g in db.Groceries
                          join m in db.Markets
                          on g.MarketId equals m.Id
+                         join c in db.GroceryCategories
+                         on g.CategoryId equals c.Id
                          select new
                          {
                              g.Id,
                              g.Item,
                              g.Quantity,
-                             m.MarketName
+                             m.MarketName,
+                             c.Category
                          }).ToList();
 
+            // loop through each record in db and store in vm
             foreach (var item in query)
             {
                 GroceryViewModel gvm = new GroceryViewModel();
                 gvm.MarketName = item.MarketName;
+                gvm.Category = item.Category;
                 gvm.Id = item.Id;
                 gvm.Item = item.Item;
                 gvm.Quantity = item.Quantity;
-                
                 groceryList.Add(gvm);
             }
 
-            // calculating quantity
-
-
             return PartialView("_Groceries", groceryList);
         }
+
+        public JsonResult GetTotal()
+        {
+            int totalCount = 0;
+
+            var query = (from g in db.Groceries
+                         select new { g.Quantity }
+                         ).ToList();
+
+            foreach (var item in query)
+            {
+                totalCount = totalCount + item.Quantity;
+            }
+
+            return Json(totalCount, JsonRequestBehavior.AllowGet);
+        }
+
+        /* -------------------- DELETE -------------------- */
 
         [HttpPost]
         public ActionResult Delete(int Id)

@@ -1,8 +1,4 @@
-﻿h1{
-    text-align: center;
-}
-
-button {
+﻿button {
     background: transparent;
     border: 0;
     outline: none;
@@ -22,6 +18,7 @@ td, th{
     padding-top: 2em;
     padding-bottom: 2em;
     height: 100%;
+    text-align:center;
 }
 
 .addItem {

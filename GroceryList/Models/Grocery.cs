@@ -11,12 +11,19 @@ namespace GroceryList.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required(ErrorMessage ="Please select a store")]
+
+        [Required(ErrorMessage = "Please select a store")]
         public int MarketId { get; set; }
-        [Required(ErrorMessage ="Please enter an item")]
+
+        [Required(ErrorMessage = "Please enter an item")]
         public string Item { get; set; }
+
+        [Required(ErrorMessage = "Please select a category")]
+        public int CategoryId { get; set; }
+
+        [Required(ErrorMessage = "Please enter a quantity")]
         public int Quantity { get; set; }
-        
+                
     }
 
 
