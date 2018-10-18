@@ -101,16 +101,14 @@ namespace GroceryList.Controllers
 
         public JsonResult GetTotal()
         {
-            int totalCount = 0;
 
-            var query = (from g in db.Groceries
-                         select new { g.Quantity }
-                         ).ToList();
+            //var query = (from g in db.Groceries
+            //             select new { g.Quantity }
+            //             ).ToList();
 
-            foreach (var item in query)
-            {
-                totalCount = totalCount + item.Quantity;
-            }
+            var quantities = db.Groceries.Select(x => x.Quantity).ToList();
+
+            int totalCount = quantities.Sum(x => x);
 
             return Json(totalCount, JsonRequestBehavior.AllowGet);
         }

@@ -179,17 +179,9 @@
     <Compile Include="Migrations\201810120022437_test.Designer.cs">
       <DependentUpon>201810120022437_test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201810120423183_AddCategory.cs" />
-    <Compile Include="Migrations\201810120423183_AddCategory.Designer.cs">
-      <DependentUpon>201810120423183_AddCategory.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810120849136_Category_rename.cs" />
-    <Compile Include="Migrations\201810120849136_Category_rename.Designer.cs">
-      <DependentUpon>201810120849136_Category_rename.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810120905171_Category_rename2.cs" />
-    <Compile Include="Migrations\201810120905171_Category_rename2.Designer.cs">
-      <DependentUpon>201810120905171_Category_rename2.cs</DependentUpon>
+    <Compile Include="Migrations\201810122257539_Add-Category.cs" />
+    <Compile Include="Migrations\201810122257539_Add-Category.Designer.cs">
+      <DependentUpon>201810122257539_Add-Category.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Grocery.cs" />
@@ -270,14 +262,8 @@
     <EmbeddedResource Include="Migrations\201810120022437_test.resx">
       <DependentUpon>201810120022437_test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810120423183_AddCategory.resx">
-      <DependentUpon>201810120423183_AddCategory.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810120849136_Category_rename.resx">
-      <DependentUpon>201810120849136_Category_rename.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810120905171_Category_rename2.resx">
-      <DependentUpon>201810120905171_Category_rename2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810122257539_Add-Category.resx">
+      <DependentUpon>201810122257539_Add-Category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,13 +7,13 @@ namespace GroceryList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Category_rename2 : IMigrationMetadata
+    public sealed partial class AddCategory : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Category_rename2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCategory));
         
         string IMigrationMetadata.Id
         {
-            get { return "201810120905171_Category_rename2"; }
+            get { return "201810122257539_Add-Category"; }
         }
         
         string IMigrationMetadata.Source
