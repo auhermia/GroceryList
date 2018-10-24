@@ -1,4 +1,5 @@
-﻿using GroceryList.Context;
+﻿#region using 
+using GroceryList.Context;
 using GroceryList.Models;
 using GroceryList.ViewModel;
 using System;
@@ -6,13 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GroceryList.DAL;
 
+#endregion
 
 namespace GroceryList.Controllers
 {
     public class HomeController : Controller
     {
+        // leave for now, for db.Markets and db.GroceryCategories
         GroceryContext db = new GroceryContext();
+
+        private GroceryRepository groceryRepository;
+
+        public HomeController()
+        {
+            groceryRepository = new GroceryRepository(new GroceryContext());
+        }
+
 
         /* -------------------- Main -------------------- */
 
@@ -21,7 +33,9 @@ namespace GroceryList.Controllers
             // load list of markets and grocery categories to dropdowns
             GroceryViewModel gvm = new GroceryViewModel();
 
+            // db -- KEEP FOR NOW BECAUSE reference to other tables
             gvm.MarketList = db.Markets.ToList()
+                .OrderBy(x => x.MarketName)
                 .Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
@@ -35,7 +49,7 @@ namespace GroceryList.Controllers
                     Text = x.Category
                 });
             return View(gvm);
-            
+
         }
 
         /* -------------------- Save -------------------- */
@@ -52,8 +66,8 @@ namespace GroceryList.Controllers
                     Quantity = viewModel.Grocery.Quantity,
                 };
 
-                db.Groceries.Add(grocery);
-                db.SaveChanges();
+                groceryRepository.AddGrocery(grocery);
+                groceryRepository.SaveGrocery();
 
                 return RedirectToAction("Index");
             }
@@ -106,7 +120,9 @@ namespace GroceryList.Controllers
             //             select new { g.Quantity }
             //             ).ToList();
 
-            var quantities = db.Groceries.Select(x => x.Quantity).ToList();
+            // var quantities = db.Groceries.Select(x => x.Quantity).ToList();
+
+            var quantities = groceryRepository.SelectQuantity();
 
             int totalCount = quantities.Sum(x => x);
 
@@ -118,14 +134,12 @@ namespace GroceryList.Controllers
         [HttpPost]
         public ActionResult Delete(int Id)
         {
-            var removeItem = db.Groceries.Find(Id);
-            db.Groceries.Remove(removeItem);
-            db.SaveChanges();
-            
-            // const
+            var removeItem = groceryRepository.FindGrocery(Id);
+            groceryRepository.DeleteGrocery(removeItem);
+            groceryRepository.SaveGrocery();
+
             return RedirectToAction("Index");
 
         }
-
     }
 }

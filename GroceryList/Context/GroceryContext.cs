@@ -14,5 +14,7 @@ namespace GroceryList.Context
         public DbSet<Market> Markets { get; set; }
         public DbSet<GroceryCategory> GroceryCategories { get; set; }
 
+
     }
+
 }
