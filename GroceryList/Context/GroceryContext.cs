@@ -13,8 +13,7 @@ namespace GroceryList.Context
         public DbSet<Grocery> Groceries { get; set; }
         public DbSet<Market> Markets { get; set; }
         public DbSet<GroceryCategory> GroceryCategories { get; set; }
-
-
+   
     }
 
 }

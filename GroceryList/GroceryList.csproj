@@ -156,6 +156,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Context\GroceryContext.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAL\GroceryRepository.cs" />
+    <Compile Include="DAL\IGroceryRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

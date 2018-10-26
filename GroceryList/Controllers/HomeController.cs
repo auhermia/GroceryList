@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GroceryList.DAL;
+using System.Data.Entity;
 
 #endregion
 
@@ -15,16 +16,12 @@ namespace GroceryList.Controllers
 {
     public class HomeController : Controller
     {
-        // leave for now, for db.Markets and db.GroceryCategories
-        GroceryContext db = new GroceryContext();
-
         private GroceryRepository groceryRepository;
-
+        
         public HomeController()
         {
             groceryRepository = new GroceryRepository(new GroceryContext());
         }
-
 
         /* -------------------- Main -------------------- */
 
@@ -33,8 +30,8 @@ namespace GroceryList.Controllers
             // load list of markets and grocery categories to dropdowns
             GroceryViewModel gvm = new GroceryViewModel();
 
-            // db -- KEEP FOR NOW BECAUSE reference to other tables
-            gvm.MarketList = db.Markets.ToList()
+
+            gvm.MarketList = groceryRepository.GetMarkets()
                 .OrderBy(x => x.MarketName)
                 .Select(x => new SelectListItem
                 {
@@ -42,14 +39,13 @@ namespace GroceryList.Controllers
                     Text = x.MarketName
                 });
 
-            gvm.CategoryList = db.GroceryCategories.ToList()
+            gvm.CategoryList = groceryRepository.GetGroceryCategories()
                 .Select(x => new SelectListItem
                 {
                     Value = x.Id.ToString(),
                     Text = x.Category
                 });
             return View(gvm);
-
         }
 
         /* -------------------- Save -------------------- */
@@ -83,11 +79,15 @@ namespace GroceryList.Controllers
         {
             List<GroceryViewModel> groceryList = new List<GroceryViewModel>();
 
-            // get data from db
-            var query = (from g in db.Groceries
-                         join m in db.Markets
+            // get data from db, query desired data, send to viewmodel
+            var groceries = groceryRepository.GetGroceries();
+            var markets = groceryRepository.GetMarkets();
+            var categories = groceryRepository.GetGroceryCategories();
+
+            var query = (from g in groceries
+                         join m in markets
                          on g.MarketId equals m.Id
-                         join c in db.GroceryCategories
+                         join c in categories
                          on g.CategoryId equals c.Id
                          select new
                          {
@@ -115,13 +115,6 @@ namespace GroceryList.Controllers
 
         public JsonResult GetTotal()
         {
-
-            //var query = (from g in db.Groceries
-            //             select new { g.Quantity }
-            //             ).ToList();
-
-            // var quantities = db.Groceries.Select(x => x.Quantity).ToList();
-
             var quantities = groceryRepository.SelectQuantity();
 
             int totalCount = quantities.Sum(x => x);
@@ -139,7 +132,26 @@ namespace GroceryList.Controllers
             groceryRepository.SaveGrocery();
 
             return RedirectToAction("Index");
-
         }
     }
 }
+
+/* 10/26 TODO
+ * 
+ *  - db.Market & db.GroceryCategories - x
+ *  - db references in linq queries - x
+ *  - generics - for repository
+ *  - Service Layer
+ *  - Unit of work
+ */
+
+/* OLD CODE
+
+        GroceryContext db = new GroceryContext();
+            //var query = (from g in db.Groceries
+    //             select new { g.Quantity }
+    //             ).ToList();
+
+    // var quantities = db.Groceries.Select(x => x.Quantity).ToList();
+
+    */
